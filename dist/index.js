@@ -367,10 +367,11 @@ module.exports = _react2.default.createClass({
     if (this.state.isScrolling || this.state.total < 2) return;
     var state = this.state;
     var diff = (this.props.loop ? 1 : 0) + index + this.state.index;
+    var loopIndex = (this.props.loop ? 1 : 0) + index;
     var x = 0;
     var y = 0;
-    if (state.dir === 'x') x = diff * state.width;
-    if (state.dir === 'y') y = diff * state.height;
+    if (state.dir === 'x') x = loopIndex * state.width;
+    if (state.dir === 'y') y = loopIndex * state.height;
 
     if (_reactNative.Platform.OS === 'android') {
       this.refs.scrollView && this.refs.scrollView.setPage(diff);

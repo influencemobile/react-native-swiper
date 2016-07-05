@@ -296,7 +296,7 @@ module.exports = React.createClass({
     let { offset, index } = this.state
     let previousOffset = horizontal ? offset.x : offset.y
     let newOffset = horizontal ? contentOffset.x : contentOffset.y
-    
+
     if (previousOffset === newOffset && (index === 0 || index === children.length - 1)) {
       this.setState({
         isScrolling: false
@@ -349,10 +349,11 @@ module.exports = React.createClass({
     if (this.state.isScrolling || this.state.total < 2) return
     let state = this.state
     let diff = (this.props.loop ? 1 : 0) + index + this.state.index
+    let loopIndex = (this.props.loop ? 1 : 0) + index
     let x = 0
     let y = 0
-    if(state.dir === 'x') x = diff * state.width
-    if(state.dir === 'y') y = diff * state.height
+    if(state.dir === 'x') x = loopIndex * state.width
+    if(state.dir === 'y') y = loopIndex * state.height
 
     if (Platform.OS === 'android') {
       this.refs.scrollView && this.refs.scrollView.setPage(diff)
